@@ -328,8 +328,61 @@ docker compose down
 
 ## 🎨 9. สรุปความพร้อมของระบบและผลการทดสอบ (Verification)
 
+<<<<<<< HEAD
 * ✅ **ESLint Verification (`npm run lint`):** ผ่านการทดสอบระดับ `0 errors, 0 warnings`
 * ✅ **Vite Production Build (`npm run build`):** คอมไพล์ไฟล์ Production สำเร็จสมบูรณ์ ไร้ข้อผิดพลาด
 * ✅ **Backend Query Filtering:** ค้นหาคำค้นบางส่วนและตัวกรองหมวดหมู่ทำงานที่ฝั่ง Backend ผ่าน Sequelize `Op.iLike` ถูกต้อง
 * ✅ **Data Persistence:** ข้อมูลข่าวสารทั้งหมดจัดเก็บใน PostgreSQL จริง ข้อมูลคงอยู่ถาวรแม้มีการปิดเซิร์ฟเวอร์หรือเริ่มใหม่
 * ✅ **Modern Responsive UI:** รองรับการใช้งานทั้งบนจอคอมพิวเตอร์ (Desktop), แท็บเล็ต (Tablet) และสมาร์ตโฟน (Mobile) ครบถ้วน
+=======
+12. การตรวจสอบการทำงาน
+
+ตรวจสอบตามรายการต่อไปนี้:
+
+PostgreSQL ทำงานและเชื่อมต่อได้
+ตารางข่าวถูกสร้างในฐานข้อมูล
+Backend เริ่มทำงานได้โดยไม่มี Error
+Frontend เปิดหน้าเว็บได้
+แสดงรายการข่าวจากฐานข้อมูลจริง
+เพิ่มข่าวได้
+เปิดดูรายละเอียดข่าวได้
+แก้ไขข่าวได้
+ลบข่าวโดยมีการยืนยันได้
+ค้นหาหัวข้อข่าวได้
+กรองหมวดหมู่ได้
+ค้นหาและกรองพร้อมกันได้
+แสดง Loading, Empty State และ Error Message ได้
+ข้อมูลยังอยู่หลังรีเฟรชหน้าเว็บ
+ข้อมูลยังอยู่หลังรีสตาร์ต Backend
+หน้าจอรองรับ Desktop, Tablet และ Mobile
+13. ปัญหาที่พบบ่อย
+SequelizeHostNotFoundError: getaddrinfo ENOTFOUND postgres-db
+
+สาเหตุ: Backend ทำงานบน Windows โดยตรง แต่กำหนด DB_HOST=postgres-db ซึ่งเป็นชื่อบริการที่ใช้ได้เฉพาะใน Docker Network
+
+วิธีแก้: หากรัน Backend บน Windows โดยตรง ให้ใช้ DB_HOST=localhost และ DB_PORT=5433 แต่ถ้ารัน Backend ใน Docker ให้ใช้ DB_HOST=postgres-db และ DB_PORT=5432
+
+ERR_MODULE_NOT_FOUND
+
+สาเหตุ: Import Path ไม่ตรงกับชื่อไฟล์จริง
+
+วิธีแก้: ตรวจสอบชื่อไฟล์และ Path ของ Controller, Model และ Router รวมถึงนามสกุล .js ให้ตรงกัน
+
+Frontend เรียก API ไม่สำเร็จ
+
+ตรวจสอบ:
+
+Backend เริ่มทำงานอยู่หรือไม่
+ค่า VITE_API_URL ถูกต้องหรือไม่
+CORS เปิดให้ Frontend ติดต่อ Backend ได้หรือไม่
+Endpoint ใน Services ตรงกับ Router หรือไม่
+เพิ่มข่าวไม่ได้
+
+ตรวจสอบว่า Frontend ส่งฟิลด์ title, operations, category, date, status และ description ตรงกับ Backend และกำหนด status เป็น Boolean
+
+14. สรุป
+
+News Management System เป็นระบบจัดการข่าวที่พัฒนาด้วย React และ Node.js โดยใช้ Express สำหรับสร้าง REST API, Sequelize สำหรับเชื่อมต่อฐานข้อมูล PostgreSQL และ Docker Compose สำหรับจัดการบริการของระบบ
+
+ระบบรองรับการเพิ่ม แสดง แก้ไข ลบ ค้นหา และกรองข่าว พร้อมการตรวจสอบข้อมูลและการแจ้งสถานะ เพื่อให้สามารถจัดการข่าวจากฐานข้อมูลจริงได้อย่างเป็นระบบ
+>>>>>>> 208647ba27c58c45d84d72366e71f2d3c62762df
