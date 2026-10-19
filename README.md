@@ -43,14 +43,14 @@
 ### 1. สถานะ Deploy สำเร็จบน Vercel (Frontend)
 แสดงสถานะ Deployment: **Ready** (Production) บนแดชบอร์ดของ Vercel พร้อมโดเมน `674259028-7153403-final-b.vercel.app`
 
-![สถานะ Deploy สำเร็จบน Vercel](docs/screenshots/vercel-deploy.png)
+![สถานะ Deploy สำเร็จบน Vercel](docs/screenshots/vercel.png)
 
 ---
 
 ### 2. สถานะ Deploy สำเร็จบน Render (Backend API)
 แสดงสถานะ Web Service: **Live** บน Render Dashboard พร้อมเชื่อมต่อฐานข้อมูล PostgreSQL ผ่าน Environment Variable
 
-![สถานะ Deploy สำเร็จบน Render](docs/screenshots/render-deploy.png)
+![สถานะ Deploy สำเร็จบน Render](docs/screenshots/render.png)
 
 ---
 
