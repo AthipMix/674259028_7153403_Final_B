@@ -64,7 +64,6 @@
 
 ![ภาพสาธิตการทำ CRUD ผ่าน Production URL](docs/screenshots/crud-demo.gif)
 
-*(หากยังไม่ได้บันทึกไฟล์ภาพ สามารถบันทึกภาพหน้าจอมาวางที่โฟลเดอร์ `docs/screenshots/` ในโปรเจกต์ได้ทันที)*
 
 ---
 
