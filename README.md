@@ -4,6 +4,70 @@
 
 ---
 
+## 🌐 ลิงก์สำหรับเข้าใช้งานระบบบน Production (Live Production URLs)
+
+| บริการ (Service) | URL สำหรับเข้าชม / ทดสอบ | รายละเอียด |
+|---|---|---|
+| **Frontend (Vercel)** | [https://674259028-7153403-final-b.vercel.app/](https://674259028-7153403-final-b.vercel.app/) | เว็บแอปพลิเคชันส่วนหน้า (Dashboard & ข่าวสาร) |
+| **Backend API (Render)** | [https://six74259028-7153403-final-b.onrender.com](https://six74259028-7153403-final-b.onrender.com) | เซิร์ฟเวอร์ RESTful API ประมวลผลและเชื่อมต่อ DB |
+
+---
+
+### 📡 Endpoint ตัวอย่างที่เปิดทดสอบได้จริงบน Production (Live API Endpoints)
+
+สามารถคลิกเปิดทดสอบผ่านเว็บเบราว์เซอร์หรือเครื่องมือยิง API (เช่น Postman, Thunder Client) ได้โดยตรง:
+
+1. **ตรวจสอบสถานะเซิร์ฟเวอร์ (Health Check):**
+   * URL: [`https://six74259028-7153403-final-b.onrender.com/`](https://six74259028-7153403-final-b.onrender.com/)
+   * Response: ข้อความต้อนรับของระบบ RESTful API News Management App
+2. **ดึงรายการข่าวสารทั้งหมด (GET All News):**
+   * URL: [`https://six74259028-7153403-final-b.onrender.com/api/news`](https://six74259028-7153403-final-b.onrender.com/api/news)
+   * Response: JSON Array ของข่าวสารทั้งหมดในฐานข้อมูล เรียงตามวันที่ล่าสุด
+3. **ทดสอบการค้นหาด้วยคำค้นบางส่วน (Search by Keyword):**
+   * URL: [`https://six74259028-7153403-final-b.onrender.com/api/news?search=เทคโนโลยี`](https://six74259028-7153403-final-b.onrender.com/api/news?search=เทคโนโลยี)
+   * Response: รายการข่าวสารที่มีคำว่า "เทคโนโลยี" ในหัวข้อ, ผู้รับผิดชอบ หรือเนื้อหา
+4. **ทดสอบการกรองตามหมวดหมู่ (Filter by Category):**
+   * URL: [`https://six74259028-7153403-final-b.onrender.com/api/news?category=การศึกษา`](https://six74259028-7153403-final-b.onrender.com/api/news?category=การศึกษา)
+   * Response: รายการข่าวสารเฉพาะหมวดหมู่ "การศึกษา"
+5. **ทดสอบการค้นหาและกรองร่วมกัน (Search + Category Filter):**
+   * URL: [`https://six74259028-7153403-final-b.onrender.com/api/news?search=วิจัย&category=การศึกษา`](https://six74259028-7153403-final-b.onrender.com/api/news?search=วิจัย&category=การศึกษา)
+   * Response: ข่าวสารหมวดหมู่การศึกษาที่มีคำค้นว่า "วิจัย"
+6. **ดึงรายละเอียดข่าวตามรหัส (GET News by ID):**
+   * URL: [`https://six74259028-7153403-final-b.onrender.com/api/news/1`](https://six74259028-7153403-final-b.onrender.com/api/news/1)
+   * Response: ข้อมูลข่าวสารรหัสที่ 1 แบบครบทุกฟิลด์
+
+---
+
+## 📸 ภาพสถานะการ Deploy และการทำงานของระบบ (Deployment & Demonstration)
+
+### 1. สถานะ Deploy สำเร็จบน Vercel (Frontend)
+แสดงสถานะ Deployment: **Ready** (Production) บนแดชบอร์ดของ Vercel พร้อมโดเมน `674259028-7153403-final-b.vercel.app`
+
+![สถานะ Deploy สำเร็จบน Vercel](docs/screenshots/vercel-deploy.png)
+
+---
+
+### 2. สถานะ Deploy สำเร็จบน Render (Backend API)
+แสดงสถานะ Web Service: **Live** บน Render Dashboard พร้อมเชื่อมต่อฐานข้อมูล PostgreSQL ผ่าน Environment Variable
+
+![สถานะ Deploy สำเร็จบน Render](docs/screenshots/render-deploy.png)
+
+---
+
+### 3. ภาพสาธิตการทำ CRUD & ค้นหา-กรองข้อมูลผ่าน URL จริงบน Production
+ภาพแสดงขั้นตอนการใช้งานจริงบนเว็บไซต์โปรดักชัน:
+* **Create:** การเปิด Modal ฟอร์มเพิ่มข่าวสารใหม่พร้อม Validation
+* **Read & Detail:** การแสดงผลตาราง การจัดหมวดหมู่ และการกดดูรายละเอียดครบทุกฟิลด์
+* **Search & Filter:** การพิมพ์ค้นหาคำค้นบางส่วนและการเลือกหมวดหมู่ที่ส่งไปประมวลผลที่ Backend
+* **Update:** การเลือกรายการข่าว ดึงข้อมูลเดิมมาแก้ไขและบันทึกผลสำเร็จ
+* **Delete:** การแสดง SweetAlert2 ยืนยันการลบข่าวสารอย่างปลอดภัย
+
+![ภาพสาธิตการทำ CRUD ผ่าน Production URL](docs/screenshots/crud-demo.gif)
+
+*(หากยังไม่ได้บันทึกไฟล์ภาพ สามารถบันทึกภาพหน้าจอมาวางที่โฟลเดอร์ `docs/screenshots/` ในโปรเจกต์ได้ทันที)*
+
+---
+
 ## 📋 1. ชุดโจทย์และข้อกำหนดของระบบ
 
 ### 1.1 การแสดงข้อมูลข่าว (Read & Details)
@@ -62,6 +126,8 @@
 | ส่วนงาน | เทคโนโลยี / เครื่องมือ | เวอร์ชัน / รายละเอียด |
 |---|---|---|
 | **Frontend Framework** | React 19 + Vite 8 | Single Page Application (SPA) ความเร็วสูง |
+| **Hosting (Frontend)** | Vercel | Cloud Edge Deployment สำหรับเว็บแอปพลิเคชัน |
+| **Hosting (Backend)** | Render | Cloud Web Service สำหรับ Node.js / Express |
 | **Icons Library** | `lucide-react` | ชุดไอคอน UI โมเดิร์นสำหรับ Dashboard และปุ่มคำสั่ง |
 | **Alerts & Modals** | `sweetalert2` | หน้าต่างป๊อปอัปแจ้งเตือนและยืนยันการลบข้อมูล |
 | **Design System** | Modern Custom CSS | ธีมสีกรมท่า-น้ำเงิน-ขาว-เทาอ่อน, Responsive Breakpoints |
@@ -69,8 +135,8 @@
 | **Backend Framework** | Node.js v22+ / Express.js | RESTful API (ES Module syntax) |
 | **Database ORM** | Sequelize v6 | จัดการโมเดลและการเชื่อมต่อ PostgreSQL |
 | **Database Driver** | `pg`, `pg-hstore` | PostgreSQL Client สำหรับ Node.js |
-| **Database** | PostgreSQL 12 Alpine | ฐานข้อมูลเชิงสัมพันธ์ (Relational Database) |
-| **Containerization** | Docker & Docker Compose | จำลองสภาพแวดล้อม Multi-container ทั้งระบบ |
+| **Database** | PostgreSQL 12 Alpine / Cloud Postgres | ฐานข้อมูลเชิงสัมพันธ์ (Relational Database) |
+| **Containerization** | Docker & Docker Compose | จำลองสภาพแวดล้อม Multi-container สำหรับรันในเครื่อง |
 | **Environment Config** | `dotenv` | จัดการค่าความลับและพอร์ตของระบบผ่าน `.env` |
 
 ---
@@ -83,9 +149,15 @@ Final-Test-Product/
 ├── docker-compose.yml        # กำหนดคอนฟิก Multi-container (DB, Backend, Frontend)
 ├── README.md                 # คู่มือการติดตั้งและคำอธิบายชุดโจทย์ (ไฟล์นี้)
 │
+├── docs/                     # เอกสารและไฟล์มีเดียประกอบการนำเสนอ
+│   └── screenshots/          # บันทึกภาพสถานะการ Deploy และการใช้งาน
+│       ├── vercel-deploy.png
+│       ├── render-deploy.png
+│       └── crud-demo.gif
+│
 ├── backend/                  # เซิร์ฟเวอร์ RESTful API (Node.js + Express)
 │   ├── config/
-│   │   └── database.js       # การตั้งค่าเชื่อมต่อ PostgreSQL ด้วย Sequelize
+│   │   └── database.js       # การตั้งค่าเชื่อมต่อ PostgreSQL ด้วย Sequelize (รองรับ DATABASE_URL)
 │   ├── controller/
 │   │   └── newsController.js # Logic การทำงาน CRUD, Search และ Category Filter
 │   ├── model/
@@ -115,6 +187,7 @@ Final-Test-Product/
     │   ├── index.css         # Modern Navy Design System & Responsive CSS
     │   └── main.jsx          # จุดเริ่มต้นการ Render ของ React
     ├── .env                  # กำหนด VITE_API_URL
+    ├── vercel.json           # การตั้งค่า SPA Routing สำหรับ Vercel
     ├── package.json
     └── vite.config.js
 ```
@@ -123,7 +196,7 @@ Final-Test-Product/
 
 ## 🗄️ 4. การออกแบบและสร้างฐานข้อมูล (Database Design)
 
-ระบบใช้ฐานข้อมูล **PostgreSQL** โดยมีชื่อฐานข้อมูลว่า **`news_db`**
+ระบบใช้ฐานข้อมูล **PostgreSQL** โดยมีชื่อฐานข้อมูลว่า **`news_db`** (หรือผ่าน `DATABASE_URL` เมื่อใช้งานบน Cloud)
 
 ### 4.1 ตารางข่าว (`news`)
 ตาราง `news` ถูกนิยามผ่าน Sequelize Model (`backend/model/newsModel.js`) ประกอบด้วยฟิลด์ดังต่อไปนี้:
@@ -144,16 +217,12 @@ Final-Test-Product/
 
 ### 4.2 วิธีการสร้างฐานข้อมูล
 
-#### วิธีที่ 1: สร้างอัตโนมัติด้วย Docker Compose (แนะนำที่สุด)
-เมื่อสั่งรันระบบผ่าน Docker Compose ตัว Container ของ PostgreSQL จะถูกสร้างขึ้นพร้อม Database ชื่อ `news_db` ให้อัตโนมัติ โดยไฟล์ฐานข้อมูลจะถูกเก็บไว้ใน Docker Volume ชื่อ `pgdata` เพื่อคงข้อมูลไว้ถาวร
-
+#### วิธีที่ 1: สร้างอัตโนมัติด้วย Docker Compose (สำหรับการรันในเครื่อง)
 ```bash
 docker compose up -d postgres-db
 ```
 
 #### วิธีที่ 2: สร้างด้วย PostgreSQL โดยตรง (Local Installation)
-หากติดตั้ง PostgreSQL บนเครื่อง Windows/Linux สามารถเปิด Command Line หรือ `psql` แล้วรันคำสั่ง:
-
 ```sql
 CREATE DATABASE news_db;
 ```
@@ -162,7 +231,7 @@ CREATE DATABASE news_db;
 
 ### 4.3 ชุดข้อมูลเริ่มต้นสำหรับทดสอบ (Seed Data 11 รายการ ครบ 3 หมวดหมู่)
 
-สามารถนำคำสั่ง SQL ด้านล่างนี้ไปรันในฐานข้อมูล `news_db` เพื่อเตรียมข้อมูลให้ตรงตามข้อกำหนดข้อ 5 (มีมากกว่า 10 รายการ ครบ 3 หมวดหมู่ และมีทั้งข่าวเผยแพร่แล้วกับฉบับร่าง):
+สามารถนำคำสั่ง SQL ด้านล่างนี้ไปรันในฐานข้อมูลเพื่อเตรียมข้อมูลให้ตรงตามข้อกำหนดข้อ 5:
 
 ```sql
 INSERT INTO "News" ("title", "operations", "category", "date", "status", "description", "createdAt", "updatedAt") VALUES
@@ -183,122 +252,79 @@ INSERT INTO "News" ("title", "operations", "category", "date", "status", "descri
 
 ## ⚙️ 5. การตั้งค่าตัวแปรสภาพแวดล้อม (Environment Variables)
 
-### 5.1 ไฟล์ `.env` ที่โฟลเดอร์หลัก (Root)
-ใช้สำหรับ Docker Compose ในการส่งค่า Configuration ไปยัง Container ต่างๆ:
-```env
-# Database Settings
-POSTGRES_USER=dev_user
-POSTGRES_PASSWORD=dev_password
-POSTGRES_DB=news_db
-POSTGRES_PORT=5433
+### 5.1 การตั้งค่าบน Production (Render & Vercel)
+* **บน Render (Backend Web Service):**
+  * `NODE_ENV=production`
+  * `BACKEND_PORT=5000`
+  * `DATABASE_URL=postgresql://...` (Connection String ของ PostgreSQL)
+* **บน Vercel (Frontend Web App):**
+  * `VITE_API_URL=https://six74259028-7153403-final-b.onrender.com`
 
-# Frontend Settings
-VITE_API_URL=http://localhost:5000
-FRONTEND_PORT=5173
-
-# Backend Settings
-NODE_ENV=development
-DB_HOST=postgres-db
-DB_PORT=5432
-DB_NAME=news_db
-DB_USER=dev_user
-DB_PASSWORD=dev_password
-BACKEND_PORT=5000
-```
-
-> **คำอธิบายพอร์ต:**
-> * `POSTGRES_PORT=5433`: พอร์ตที่เปิดให้เครื่อง Host ภายนอกเชื่อมต่อเข้าไปยัง PostgreSQL ใน Docker
-> * `DB_PORT=5432`: พอร์ตภายใน Docker Network ที่ Backend ติดต่อไปยัง `postgres-db`
-> * `BACKEND_PORT=5000`: พอร์ตสำหรับเรียกใช้ RESTful API
-> * `FRONTEND_PORT=5173`: พอร์ตสำหรับเปิดหน้าเว็บแอปพลิเคชัน
-
-### 5.2 ไฟล์ `backend/.env`
-สำหรับการรัน Backend โดยตรงในเครื่อง (Local Run):
-```env
-NODE_ENV=development
-DB_HOST=postgres-db      # หากรันนอก Docker บนเครื่อง Windows ให้เปลี่ยนเป็น 127.0.0.1
-DB_PORT=5432             # หากเชื่อมต่อกับ Docker Postgres จากภายนอกให้ใช้ 5433
-DB_NAME=news_db
-DB_USER=dev_user
-DB_PASSWORD=dev_password
-BACKEND_PORT=5000
-```
-
-### 5.3 ไฟล์ `frontend/.env`
-สำหรับการตั้งค่า Endpoint ในการเรียก API:
-```env
-VITE_API_URL=http://localhost:5000
-FRONTEND_PORT=5173
-```
+### 5.2 การตั้งค่าสำหรับการรันในเครื่อง (Local Run)
+* **ไฟล์ Root `.env`:**
+  ```env
+  POSTGRES_USER=dev_user
+  POSTGRES_PASSWORD=dev_password
+  POSTGRES_DB=news_db
+  POSTGRES_PORT=5433
+  VITE_API_URL=http://localhost:5000
+  FRONTEND_PORT=5173
+  NODE_ENV=development
+  DB_HOST=postgres-db
+  DB_PORT=5432
+  DB_NAME=news_db
+  DB_USER=dev_user
+  DB_PASSWORD=dev_password
+  BACKEND_PORT=5000
+  ```
+* **ไฟล์ `backend/.env`:**
+  ```env
+  NODE_ENV=development
+  DB_HOST=postgres-db
+  DB_PORT=5432
+  DB_NAME=news_db
+  DB_USER=dev_user
+  DB_PASSWORD=dev_password
+  BACKEND_PORT=5000
+  ```
+* **ไฟล์ `frontend/.env`:**
+  ```env
+  VITE_API_URL=http://localhost:5000
+  FRONTEND_PORT=5173
+  ```
 
 ---
 
 ## 📦 6. การติดตั้ง Dependencies (Installation)
 
-สำหรับการรันแบบ Local (ไม่ผ่าน Docker) ให้ติดตั้งโมดูลของทั้งสองฝั่ง:
-
-### ติดตั้งฝั่ง Backend
 ```bash
-cd backend
-npm install
-```
+# ติดตั้งฝั่ง Backend
+cd backend && npm install
 
-### ติดตั้งฝั่ง Frontend
-```bash
-cd frontend
-npm install
+# ติดตั้งฝั่ง Frontend
+cd frontend && npm install
 ```
 
 ---
 
 ## 🚀 7. คำสั่งเริ่มระบบ (How to Run System)
 
-### รูปแบบที่ 1: รันด้วย Docker Compose (แนะนำที่สุด - คำสั่งเดียวจบ)
-
-เปิด Terminal ที่โฟลเดอร์หลักของโปรเจกต์ (`Final-Test-Product/`):
-
+### รูปแบบที่ 1: รันด้วย Docker Compose (แนะนำที่สุดสำหรับ Local)
 ```bash
-# เริ่มการทำงานของทุก Service ในโหมด Background
 docker compose up -d
-
-# ตรวจสอบสถานะการทำงานของคอนเทนเนอร์
-docker compose ps
 ```
+* **Frontend:** [http://localhost:5173](http://localhost:5173)
+* **Backend API:** [http://localhost:5000/api/news](http://localhost:5000/api/news)
 
-**ลิงก์การเข้าใช้งาน:**
-* 🌐 **Frontend Web Application:** [http://localhost:5173](http://localhost:5173)
-* ⚙️ **Backend RESTful API:** [http://localhost:5000/api/news](http://localhost:5000/api/news)
-* 🗄️ **PostgreSQL Port (Host):** `localhost:5433` (Username: `dev_user`, Password: `dev_password`, Database: `news_db`)
-
-**คำสั่งเพิ่มเติมสำหรับ Docker:**
-```bash
-# ดู Log การทำงานแบบ Real-time
-docker compose logs -f
-
-# หยุดการทำงานของระบบทั้งหมด
-docker compose down
-```
-
----
-
-### รูปแบบที่ 2: รันแบบ Manual (แยกเปิดทีละ Service)
-
-1. **เปิดฐานข้อมูล PostgreSQL:**
+### รูปแบบที่ 2: รันแยกทีละ Service (Manual Development)
+1. **เริ่ม Backend:**
    ```bash
-   docker compose up -d postgres-db
+   cd backend && npm run dev
    ```
-2. **เปิดเซิร์ฟเวอร์ Backend (Terminal ที่ 1):**
+2. **เริ่ม Frontend:**
    ```bash
-   cd backend
-   npm run dev
+   cd frontend && npm run dev
    ```
-   *เซิร์ฟเวอร์จะเริ่มทำงานที่ `http://localhost:5000`*
-3. **เปิดเซิร์ฟเวอร์ Frontend (Terminal ที่ 2):**
-   ```bash
-   cd frontend
-   npm run dev
-   ```
-   *เปิดเบราว์เซอร์ไปที่ `http://localhost:5173`*
 
 ---
 
@@ -328,61 +354,9 @@ docker compose down
 
 ## 🎨 9. สรุปความพร้อมของระบบและผลการทดสอบ (Verification)
 
-<<<<<<< HEAD
+* ✅ **Live Production Ready:** ใช้งานได้จริงทั้งบน Vercel และ Render
 * ✅ **ESLint Verification (`npm run lint`):** ผ่านการทดสอบระดับ `0 errors, 0 warnings`
 * ✅ **Vite Production Build (`npm run build`):** คอมไพล์ไฟล์ Production สำเร็จสมบูรณ์ ไร้ข้อผิดพลาด
 * ✅ **Backend Query Filtering:** ค้นหาคำค้นบางส่วนและตัวกรองหมวดหมู่ทำงานที่ฝั่ง Backend ผ่าน Sequelize `Op.iLike` ถูกต้อง
 * ✅ **Data Persistence:** ข้อมูลข่าวสารทั้งหมดจัดเก็บใน PostgreSQL จริง ข้อมูลคงอยู่ถาวรแม้มีการปิดเซิร์ฟเวอร์หรือเริ่มใหม่
 * ✅ **Modern Responsive UI:** รองรับการใช้งานทั้งบนจอคอมพิวเตอร์ (Desktop), แท็บเล็ต (Tablet) และสมาร์ตโฟน (Mobile) ครบถ้วน
-=======
-12. การตรวจสอบการทำงาน
-
-ตรวจสอบตามรายการต่อไปนี้:
-
-PostgreSQL ทำงานและเชื่อมต่อได้
-ตารางข่าวถูกสร้างในฐานข้อมูล
-Backend เริ่มทำงานได้โดยไม่มี Error
-Frontend เปิดหน้าเว็บได้
-แสดงรายการข่าวจากฐานข้อมูลจริง
-เพิ่มข่าวได้
-เปิดดูรายละเอียดข่าวได้
-แก้ไขข่าวได้
-ลบข่าวโดยมีการยืนยันได้
-ค้นหาหัวข้อข่าวได้
-กรองหมวดหมู่ได้
-ค้นหาและกรองพร้อมกันได้
-แสดง Loading, Empty State และ Error Message ได้
-ข้อมูลยังอยู่หลังรีเฟรชหน้าเว็บ
-ข้อมูลยังอยู่หลังรีสตาร์ต Backend
-หน้าจอรองรับ Desktop, Tablet และ Mobile
-13. ปัญหาที่พบบ่อย
-SequelizeHostNotFoundError: getaddrinfo ENOTFOUND postgres-db
-
-สาเหตุ: Backend ทำงานบน Windows โดยตรง แต่กำหนด DB_HOST=postgres-db ซึ่งเป็นชื่อบริการที่ใช้ได้เฉพาะใน Docker Network
-
-วิธีแก้: หากรัน Backend บน Windows โดยตรง ให้ใช้ DB_HOST=localhost และ DB_PORT=5433 แต่ถ้ารัน Backend ใน Docker ให้ใช้ DB_HOST=postgres-db และ DB_PORT=5432
-
-ERR_MODULE_NOT_FOUND
-
-สาเหตุ: Import Path ไม่ตรงกับชื่อไฟล์จริง
-
-วิธีแก้: ตรวจสอบชื่อไฟล์และ Path ของ Controller, Model และ Router รวมถึงนามสกุล .js ให้ตรงกัน
-
-Frontend เรียก API ไม่สำเร็จ
-
-ตรวจสอบ:
-
-Backend เริ่มทำงานอยู่หรือไม่
-ค่า VITE_API_URL ถูกต้องหรือไม่
-CORS เปิดให้ Frontend ติดต่อ Backend ได้หรือไม่
-Endpoint ใน Services ตรงกับ Router หรือไม่
-เพิ่มข่าวไม่ได้
-
-ตรวจสอบว่า Frontend ส่งฟิลด์ title, operations, category, date, status และ description ตรงกับ Backend และกำหนด status เป็น Boolean
-
-14. สรุป
-
-News Management System เป็นระบบจัดการข่าวที่พัฒนาด้วย React และ Node.js โดยใช้ Express สำหรับสร้าง REST API, Sequelize สำหรับเชื่อมต่อฐานข้อมูล PostgreSQL และ Docker Compose สำหรับจัดการบริการของระบบ
-
-ระบบรองรับการเพิ่ม แสดง แก้ไข ลบ ค้นหา และกรองข่าว พร้อมการตรวจสอบข้อมูลและการแจ้งสถานะ เพื่อให้สามารถจัดการข่าวจากฐานข้อมูลจริงได้อย่างเป็นระบบ
->>>>>>> 208647ba27c58c45d84d72366e71f2d3c62762df
